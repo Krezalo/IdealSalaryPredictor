@@ -1,0 +1,176 @@
+<html>
+   <head>
+      <title>Ideal Salary Predictor!</title>
+      <link rel="stylesheet" type="text/css" href="style.css">
+      <script> console.log("YOU HAVE FOUND THE CONSOLE")
+         var pi = {pi:3.14};
+      </script>
+   </head>
+   <body background="Website-Background-1.png">
+      <div id= "container">
+      <div id = "header">
+         <h1>Ideal Salary Predictor!</h1>
+      </div>
+      <div id = "content">
+         <div id = "main">
+            <h2>Check Now!!!</h2>
+            <div id="#inprow">
+               <label for="education">Education:</label>
+               <select id="education">
+                  <option value="IIT">IIT</option>
+                  <option value="NIT/IIIT/BITS/ISB">NIT/IIIT/BITS/ISB</option>
+                  <option value="Tier 3 College">Tier 3 College</option>
+                  <option value="No College">No College</option>
+               </select>
+            </div>
+            <div id="#inprow">
+               <label for="experience">Years of Experience:</label>
+               <select id="experience">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2" selected>2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+             </select>
+            </div>
+            <div id="#inprow">
+               <label for="workHours">Work Hours per Day:</label>
+               <select id="workHours">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6" selected>6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+             </select>
+               
+            </div>
+            <div id="#inprow">
+               <label for="currentCompany">Current Company:</label>
+               <select id="currentCompany">
+                  <option value="FAANG">FAANG</option>
+                  <option value="Unicorn Startup">Unicorn Startup</option>
+                  <option value="Indian MNC">Indian MNC</option>
+                  <option value="Series A Startup">Series A Startup</option>
+                  <option value="Others">Others</option>
+               </select>
+            </div>
+            <div id="#inprow">
+               <label for="yearsInCompany">Years in Current Company:</label>
+               <select id="yearsInCompany">
+                  <option value="0">0</option>
+                  <option value="1">1</option>
+                  <option value="2" selected>2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+               </select>
+            </div>
+            <div id="#inprow">
+               <label for="techStack">Tech Stack:</label>
+               <select id="techStack">
+                  <option value="AI/ML">AI/ML</option>
+                  <option value="Backend">Backend</option>
+                  <option value="Frontend">Frontend</option>
+                  <option value="Full-Stack">Full-Stack</option>
+                  <option value="Language Specific">Python/Java/C++/Rust/JS</option>
+                  <option value="Blockchain">Blockchain</option>
+               </select>
+            </div>
+            <label><input type="checkbox" id="frequentSwitching"> Frequent Job Switching</label>
+            <label><input type="checkbox" id="personalBrand"> Has Personal Brand (LinkedIn/Github/Contest Ratings/Twitter)</label>
+            <label><input type="checkbox" id="remoteWork"> Prefers Remote Work</label>
+            <button onclick="calculateSalary()" style="max-width: 60%; align-self: center;">Estimate Salary</button>
+            <div id="result"></div>
+            <script>
+               function calculateSalary() {
+                   const inputs = {
+                       education: document.getElementById("education").value,
+                       experience: parseInt(document.getElementById("experience").value),
+                       workHours: parseInt(document.getElementById("workHours").value),
+                       currentCompany: document.getElementById("currentCompany").value,
+                       yearsInCompany: parseInt(document.getElementById("yearsInCompany").value),
+                       techStack: document.getElementById("techStack").value,
+                       frequentSwitching: document.getElementById("frequentSwitching").checked,
+                       personalBrand: document.getElementById("personalBrand").checked,
+                       remoteWork: document.getElementById("remoteWork").checked
+                   };
+                   
+                   let baseSalary = 500000;
+                   const educationMultiplier = { "IIT": 1.5, "NIT/IIIT/BITS/ISB": 1.2, "Tier 3 College": 1.0, "No College": 0.8 };
+                   baseSalary *= educationMultiplier[inputs.education] || 1.0;
+                   
+                   if (inputs.experience < 1) baseSalary *= inputs.currentCompany === "FAANG" ? 1.5 : 1.0;
+                    else if (inputs.experience <= 2) baseSalary *= 1.8; // Slight boost for early career
+                    else if (inputs.experience <= 4) baseSalary *= 2.2; // Mid-junior level boost
+                    else if (inputs.experience <= 6) baseSalary *= 2.8; // Mid-level engineer
+                    else if (inputs.experience <= 8) baseSalary *= 3.5; // Senior engineer
+                    else if (inputs.experience <= 10) baseSalary *= 4.2; // Tech lead level
+                    else if (inputs.experience <= 12) baseSalary *= 5.0; // Principal/staff engineer
+                    else if (inputs.experience <= 15) baseSalary *= 6.0; // Engineering manager/director
+                    else baseSalary *= 6.0;
+                   
+                   if (inputs.workHours < 4) baseSalary *= 0.7;
+                   else if (inputs.workHours < 6) baseSalary *= 0.9;
+                   else if (inputs.workHours < 8) baseSalary *= 1.1;
+                   else if (inputs.workHours < 10) baseSalary *= 1.15;
+                   else if (inputs.workHours < 12) baseSalary *= 1.2;
+                   else if (inputs.workHours > 14) baseSalary *= 1.5;
+                   
+                   const companyMultiplier = { "FAANG": 1.7, "Unicorn Startup": 1.5, "Indian MNC": 0.7, "Series A Startup": 1.2, "Others": 0.6 };
+                   baseSalary *= companyMultiplier[inputs.currentCompany] || 1.0;
+                   
+                   if (inputs.yearsInCompany < 1) baseSalary *= 1.15;
+                   else if (inputs.yearsInCompany > 5) baseSalary *= 0.7;
+                   
+                   const techStackMultiplier = { "AI/ML": 1.5, "Backend": 1.35, "Frontend": 1.25, "Full-Stack": 1.2, "Language Specific": 0.7, "Blockchain": 0.5 };
+                   baseSalary *= techStackMultiplier[inputs.techStack] || 1.0;
+                   
+                   if (inputs.frequentSwitching) baseSalary *= 1.2;
+                   if (inputs.personalBrand) baseSalary *= 1.1;
+                   if (inputs.remoteWork) baseSalary *= 0.9;
+                   
+                   let finalSalary = Math.round(baseSalary / 100000) * 100000;
+                   
+                    document.getElementById("result").innerHTML = 
+                        `You deserve ₹${finalSalary} per year.`;
+
+               }
+            </script>
+         </div>
+      </div>
+      <div id = "footer">
+         Copywright &copy; 2025 Gandhi Industries
+      </div>
+   </body>
