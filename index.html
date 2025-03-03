@@ -5,6 +5,15 @@
       <script> console.log("YOU HAVE FOUND THE CONSOLE")
          var pi = {pi:3.14};
       </script>
+      <!-- Google tag (gtag.js) -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-FQDQYFC1SZ"></script>
+      <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-FQDQYFC1SZ');
+      </script>
    </head>
    <body background="Website-Background-1.png">
       <div id= "container">
@@ -16,8 +25,8 @@
             <h2>Check Now!!!</h2>
             <div id="#inprow">
                <label for="education">Education:</label>
-               <select id="education">
-                  <option value="IIT">IIT</option>
+               <select id="education" onchange="trackEvent('Input Change', 'education', this.value)"></select>
+                  <option value="IIT" selected>IIT</option>
                   <option value="NIT/IIIT/BITS/ISB">NIT/IIIT/BITS/ISB</option>
                   <option value="Tier 3 College">Tier 3 College</option>
                   <option value="No College">No College</option>
@@ -25,7 +34,7 @@
             </div>
             <div id="#inprow">
                <label for="experience">Years of Experience:</label>
-               <select id="experience">
+               <select id="experience" onchange="trackEvent('Input Change', 'experience', this.value)"></select>
                 <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2" selected>2</option>
@@ -46,7 +55,7 @@
             </div>
             <div id="#inprow">
                <label for="workHours">Work Hours per Day:</label>
-               <select id="workHours">
+               <select id="workHours" onchange="trackEvent('Input Change', 'workHours', this.value)"></select>
                 <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -68,8 +77,8 @@
             </div>
             <div id="#inprow">
                <label for="currentCompany">Current Company:</label>
-               <select id="currentCompany">
-                  <option value="FAANG">FAANG</option>
+               <select id="currentCompany" onchange="trackEvent('Input Change', 'currentCompany', this.value)"></select>
+                  <option value="FAANG" selected>FAANG</option>
                   <option value="Unicorn Startup">Unicorn Startup</option>
                   <option value="Indian MNC">Indian MNC</option>
                   <option value="Series A Startup">Series A Startup</option>
@@ -78,7 +87,7 @@
             </div>
             <div id="#inprow">
                <label for="yearsInCompany">Years in Current Company:</label>
-               <select id="yearsInCompany">
+               <select id="yearsInCompany" onchange="trackEvent('Input Change', 'yearsInCompany', this.value)">
                   <option value="0">0</option>
                   <option value="1">1</option>
                   <option value="2" selected>2</option>
@@ -99,8 +108,8 @@
             </div>
             <div id="#inprow">
                <label for="techStack">Tech Stack:</label>
-               <select id="techStack">
-                  <option value="AI/ML">AI/ML</option>
+               <select id="techStack" onchange="trackEvent('Input Change', 'techStack', this.value)">
+                  <option value="AI/ML" selected>AI/ML</option>
                   <option value="Backend">Backend</option>
                   <option value="Frontend">Frontend</option>
                   <option value="Full-Stack">Full-Stack</option>
@@ -108,10 +117,10 @@
                   <option value="Blockchain">Blockchain</option>
                </select>
             </div>
-            <label><input type="checkbox" id="frequentSwitching"> Frequent Job Switching</label>
-            <label><input type="checkbox" id="personalBrand"> Has Personal Brand (LinkedIn/Github/Contest Ratings/Twitter)</label>
-            <label><input type="checkbox" id="remoteWork"> Prefers Remote Work</label>
-            <button onclick="calculateSalary()" style="max-width: 60%; align-self: center;">Estimate Salary</button>
+            <label><input type="checkbox" id="frequentSwitching" onchange="trackEvent('Input Change', 'frequentSwitching', this.checked)"> Frequent Job Switching</label>
+            <label><input type="checkbox" id="personalBrand" onchange="trackEvent('Input Change', 'personalBrand', this.checked)"> Has Personal Brand (LinkedIn/Github/Contest Ratings/Twitter)</label>
+            <label><input type="checkbox" id="remoteWork"  onchange="trackEvent('Input Change', 'remoteWork', this.checked)"> Prefers Remote Work</label>
+            <button onclick="calculateSalary(); trackEvent('Button Click', 'Estimate Salary', 'User clicked Estimate Salary')" style="max-width: 60%; align-self: center;">Estimate Salary</button>
             <div id="result"></div>
             <script>
                function calculateSalary() {
