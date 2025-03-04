@@ -208,15 +208,16 @@
                    
                    let finalSalary = Math.round(baseSalary / 100000) * 100000;
 
+                   document.getElementById("result").innerHTML = 
+                        `You deserve <span style="color: blue; font-size: 40; font-weight:bold;">₹${finalSalary}</span> per year.`;
+
                    // Send to GA
                   gtag('event', 'calculated_salary', {
                      'event_category': 'Salary Estimation',
-                     'event_label': `Computed Salary: ₹${salary}`,
-                     'value': salary
+                     'event_label': `Computed Salary: ₹${finalSalary}`,
+                     'value': finalSalary
                   });
                   
-                   document.getElementById("result").innerHTML = 
-                        `You deserve <span style="color: blue; font-size: 40; font-weight:bold;">₹${finalSalary}</span> per year.`;
 
                }
             </script>
