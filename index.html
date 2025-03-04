@@ -27,6 +27,10 @@
       </div>
       <div id = "content">
          <div id = "main">
+            <audio id="background-music" autoplay loop>
+               <source src="music.mp3" type="audio/mpeg">
+               Your browser does not support the audio element.
+            </audio>
             <h2>Check Now!!!</h2>
             <div id="#inprow">
                <label for="education">Education:</label>
@@ -128,6 +132,21 @@
             <button onclick="calculateSalary(); trackEvent('Button Click', 'Estimate Salary', 'User clicked Estimate Salary')" style="max-width: 60%; align-self: center;">Estimate Salary</button>
             <div id="result"></div>
             <script>
+               document.addEventListener("DOMContentLoaded", function() {
+                  const audio = document.getElementById("background-music");
+                  if (!audio) {
+                     console.error("Audio element not found!");
+                     return;
+                  }
+                  audio.volume = 0.1;
+                  // Attempt to play the audio
+                  audio.play().catch(() => {
+                     console.log("Autoplay failed, waiting for user interaction.");
+                     document.body.addEventListener("click", function() {
+                        audio.play();
+                     }, { once: true });
+                  });
+               });
                function calculateSalary() {
                    const inputs = {
                        education: document.getElementById("education").value,
@@ -176,9 +195,9 @@
                    if (inputs.remoteWork) baseSalary *= 0.9;
                    
                    let finalSalary = Math.round(baseSalary / 100000) * 100000;
-                   
-                    document.getElementById("result").innerHTML = 
-                        `You deserve ₹${finalSalary} per year.`;
+                  
+                   document.getElementById("result").innerHTML = 
+                        `You deserve <span style="color: blue; font-size: 40; font-weight:bold;">₹${finalSalary}</span> per year.`;
 
                }
             </script>
