@@ -20,7 +20,7 @@
         }
       </script>
    </head>
-   <body background="Website-Background-1.png">
+   <body background="Website-Background-2.png">
       <div id= "container">
       <div id = "header">
          <h1>Ideal Salary Predictor!</h1>
@@ -132,6 +132,18 @@
             <button onclick="calculateSalary(); trackEvent('Button Click', 'Estimate Salary', 'User clicked Estimate Salary')" style="max-width: 60%; align-self: center;">Estimate Salary</button>
             <div id="result"></div>
             <script>
+               document.addEventListener("DOMContentLoaded", function () {
+                  function isMobile() {
+                     return /Android|iPhone/i.test(navigator.userAgent);
+                  }
+
+                  if (isMobile()) {
+                     document.body.style.backgroundImage = "url('Website-Background-2.png')";
+                  } else {
+                     document.body.style.backgroundImage = "url('Website-Background-1.png')";
+                  }
+               });
+
                document.addEventListener("DOMContentLoaded", function() {
                   const audio = document.getElementById("background-music");
                   if (!audio) {
