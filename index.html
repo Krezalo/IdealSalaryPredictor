@@ -207,6 +207,13 @@
                    if (inputs.remoteWork) baseSalary *= 0.9;
                    
                    let finalSalary = Math.round(baseSalary / 100000) * 100000;
+
+                   // Send to GA
+                  gtag('event', 'calculated_salary', {
+                     'event_category': 'Salary Estimation',
+                     'event_label': `Computed Salary: ₹${salary}`,
+                     'value': salary
+                  });
                   
                    document.getElementById("result").innerHTML = 
                         `You deserve <span style="color: blue; font-size: 40; font-weight:bold;">₹${finalSalary}</span> per year.`;
